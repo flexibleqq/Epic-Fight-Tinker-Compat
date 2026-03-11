@@ -1,0 +1,15 @@
+Java Launcher: /usr/local/sdkman/candidates/java/17.0.18-tem/bin/java
+Arguments: '--task, SRG_TO_MCP, --input, /home/codespace/.gradle/caches/modules-2/files-2.1/curse.maven/mantle-74924/7563777/8a3f948f8c505ee92dae915ec0a1593594eb2667/mantle-74924-7563777.jar, --output, /home/codespace/.gradle/caches/forge_gradle/deobf_dependencies/curse/maven/mantle-74924/7563777_mapped_official_1.20.1/mantle-74924-7563777_mapped_official_1.20.1.jar, --mcp, /home/codespace/.gradle/caches/forge_gradle/mcp_repo/net/minecraft/mapping/1.20.1/mapping-1.20.1-mapping.zip, --strip-signatures'
+Classpath:
+ - /home/codespace/.gradle/caches/forge_gradle/maven_downloader/net/minecraftforge/installertools/1.4.4/installertools-1.4.4-fatjar.jar
+Working directory: /workspaces/Epic-Fight-Tinker-Compat/build/_RenameSrg2Mcp_-2045643153
+Main class: net.minecraftforge.installertools.ConsoleTool
+====================================
+Task: SRG_TO_MCP
+Input:  /home/codespace/.gradle/caches/modules-2/files-2.1/curse.maven/mantle-74924/7563777/8a3f948f8c505ee92dae915ec0a1593594eb2667/mantle-74924-7563777.jar
+Output: /home/codespace/.gradle/caches/forge_gradle/deobf_dependencies/curse/maven/mantle-74924/7563777_mapped_official_1.20.1/mantle-74924-7563777_mapped_official_1.20.1.jar
+MCP:    /home/codespace/.gradle/caches/forge_gradle/mcp_repo/net/minecraft/mapping/1.20.1/mapping-1.20.1-mapping.zip
+Loading MCP Data
+Processing ZIP file
+Stripped Manifest of sha digests
+Process complete

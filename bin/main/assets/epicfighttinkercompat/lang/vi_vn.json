@@ -1,0 +1,8 @@
+{
+  "tool_stat.epicfighttinkercompat.impact": "Impact",
+  "tool_stat.epicfighttinkercompat.impact.description": "Lực đẩy lùi của vũ khí Epic Fight",
+  "tool_stat.epicfighttinkercompat.max_strikes": "Max Strikes",
+  "tool_stat.epicfighttinkercompat.max_strikes.description": "Số lượng kẻ địch tối đa chém trúng",
+  "tool_stat.epicfighttinkercompat.armor_negation": "Armor Negation",
+  "tool_stat.epicfighttinkercompat.armor_negation.description": "Khả năng xuyên giáp mục tiêu"
+}

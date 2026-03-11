@@ -1,0 +1,61 @@
+Compiled from "RangedWeaponCapability.java"
+public class yesman.epicfight.world.capabilities.item.RangedWeaponCapability extends yesman.epicfight.world.capabilities.item.CapabilityItem {
+  protected java.util.Map<yesman.epicfight.api.animation.LivingMotion, yesman.epicfight.api.animation.AnimationManager$AnimationAccessor<? extends yesman.epicfight.api.animation.types.StaticAnimation>> rangeAnimationModifiers;
+
+  protected yesman.epicfight.world.capabilities.item.CapabilityItem$ZoomInType zoomInType;
+
+  protected yesman.epicfight.world.capabilities.item.RangedWeaponCapability(yesman.epicfight.world.capabilities.item.CapabilityItem$Builder);
+    Code:
+       0: aload_0
+       1: aload_1
+       2: invokespecial #27                 // Method yesman/epicfight/world/capabilities/item/CapabilityItem."<init>":(Lyesman/epicfight/world/capabilities/item/CapabilityItem$Builder;)V
+       5: aload_1
+       6: checkcast     #7                  // class yesman/epicfight/world/capabilities/item/RangedWeaponCapability$Builder
+       9: astore_2
+      10: aload_0
+      11: aload_2
+      12: getfield      #29                 // Field yesman/epicfight/world/capabilities/item/RangedWeaponCapability$Builder.rangeAnimationModifiers:Ljava/util/Map;
+      15: putfield      #30                 // Field rangeAnimationModifiers:Ljava/util/Map;
+      18: aload_0
+      19: aload_2
+      20: getfield      #32                 // Field yesman/epicfight/world/capabilities/item/RangedWeaponCapability$Builder.zoomInType:Lyesman/epicfight/world/capabilities/item/CapabilityItem$ZoomInType;
+      23: putfield      #33                 // Field zoomInType:Lyesman/epicfight/world/capabilities/item/CapabilityItem$ZoomInType;
+      26: return
+
+  public java.util.Map<yesman.epicfight.api.animation.LivingMotion, yesman.epicfight.api.animation.AnimationManager$AnimationAccessor<? extends yesman.epicfight.api.animation.types.StaticAnimation>> getLivingMotionModifier(yesman.epicfight.world.capabilities.entitypatch.LivingEntityPatch<?>, net.minecraft.world.InteractionHand);
+    Code:
+       0: aload_2
+       1: getstatic     #48                 // Field net/minecraft/world/InteractionHand.MAIN_HAND:Lnet/minecraft/world/InteractionHand;
+       4: if_acmpne     12
+       7: aload_0
+       8: getfield      #30                 // Field rangeAnimationModifiers:Ljava/util/Map;
+      11: areturn
+      12: aload_0
+      13: aload_1
+      14: aload_2
+      15: invokespecial #50                 // Method yesman/epicfight/world/capabilities/item/CapabilityItem.getLivingMotionModifier:(Lyesman/epicfight/world/capabilities/entitypatch/LivingEntityPatch;Lnet/minecraft/world/InteractionHand;)Ljava/util/Map;
+      18: areturn
+
+  public boolean availableOnHorse();
+    Code:
+       0: iconst_1
+       1: ireturn
+
+  public boolean canBePlacedOffhand();
+    Code:
+       0: iconst_0
+       1: ireturn
+
+  public yesman.epicfight.world.capabilities.item.CapabilityItem$ZoomInType getZoomInType();
+    Code:
+       0: aload_0
+       1: getfield      #33                 // Field zoomInType:Lyesman/epicfight/world/capabilities/item/CapabilityItem$ZoomInType;
+       4: areturn
+
+  public static yesman.epicfight.world.capabilities.item.RangedWeaponCapability$Builder builder();
+    Code:
+       0: new           #7                  // class yesman/epicfight/world/capabilities/item/RangedWeaponCapability$Builder
+       3: dup
+       4: invokespecial #63                 // Method yesman/epicfight/world/capabilities/item/RangedWeaponCapability$Builder."<init>":()V
+       7: areturn
+}
