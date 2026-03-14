@@ -17,6 +17,12 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import slimeknights.tconstruct.library.materials.MaterialRegistry;
+
+import com.minhhjjj.epicfighttinkercompat.stats.EpicFightBindingStats;
+import com.minhhjjj.epicfighttinkercompat.stats.EpicFightHandleStats;
+import com.minhhjjj.epicfighttinkercompat.stats.EpicFightHeadStats;
+import com.minhhjjj.epicfighttinkercompat.modifiers.EpicFightModifiers;
 
 import org.slf4j.Logger;
 
@@ -30,7 +36,7 @@ public class EpicFightTinkerCompat
     public EpicFightTinkerCompat(FMLJavaModLoadingContext context)
     {
         IEventBus modEventBus = context.getModEventBus();
-        EpicFightModifier.register(modEventBus);
+        EpicFightModifiers.MODIFIERS.register(modEventBus);
 
         modEventBus.addListener(this::commonSetup);
 
@@ -44,6 +50,9 @@ public class EpicFightTinkerCompat
     {
         event.enqueueWork(() -> {
         EpicFightToolStats.register();
+        MaterialRegistry.getInstance().registerStatType(EpicFightHandleStats.TYPE);
+        MaterialRegistry.getInstance().registerStatType(EpicFightHeadStats.TYPE);
+        MaterialRegistry.getInstance().registerStatType(EpicFightBindingStats.TYPE);
     });
     }
 

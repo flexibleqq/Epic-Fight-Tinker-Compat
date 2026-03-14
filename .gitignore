@@ -1,0 +1,22 @@
+# Gradle cache & build folders
+.gradle/
+build/
+out/
+bin/
+
+# IDE settings
+.idea/
+*.iml
+.settings/
+.classpath
+.project
+.vscode/
+
+# Minecraft run folders (Log, save game test)
+run/
+logs/
+crash-reports/
+
+# OS trash
+.DS_Store
+Thumbs.db

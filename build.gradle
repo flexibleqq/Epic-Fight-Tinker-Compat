@@ -126,6 +126,10 @@ dependencies {
     implementation fg.deobf("curse.maven:tinkers-construct-74072:7449219")
     implementation fg.deobf("curse.maven:mantle-74924:7563777")
     implementation fg.deobf("curse.maven:epic-fight-mod-405076:7633232")
+
+    // runtimeOnly fg.deobf("curse.maven:modernfix-790626:7515215")
+    // runtimeOnly fg.deobf("curse.maven:ferritecore-429235:4810975")
+    // runtimeOnly fg.deobf("curse.maven:jei-238222:7391695")
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.

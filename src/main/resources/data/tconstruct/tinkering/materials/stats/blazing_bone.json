@@ -1,0 +1,13 @@
+{
+  "stats": {
+    "epicfighttinkercompat:head": {
+      "impact": 2.5
+    },
+    "epicfighttinkercompat:handle": {
+      "max_strikes": 0.1
+    },
+    "epicfighttinkercompat:binding": {
+      "armor_negation": 5.0
+    }
+  }
+}

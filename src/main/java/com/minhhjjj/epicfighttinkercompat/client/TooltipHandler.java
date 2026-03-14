@@ -9,6 +9,10 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TextColor;
+import net.minecraft.ChatFormatting;
+
 import slimeknights.tconstruct.library.materials.definition.MaterialVariantId;
 import slimeknights.tconstruct.library.materials.stats.MaterialStatsId;
 import slimeknights.tconstruct.library.tools.part.IToolPart;
@@ -30,7 +34,6 @@ public class TooltipHandler {
 
         if (item instanceof IToolPart part) {
             boolean isShiftPressed = Screen.hasShiftDown();
-            // Nếu không bấm Shift thì thoát luôn, không cần làm gì cả
             if (!isShiftPressed) return;
 
             MaterialVariantId material = part.getMaterial(stack);
@@ -38,13 +41,11 @@ public class TooltipHandler {
             String partItemId = BuiltInRegistries.ITEM.getKey(part.asItem()).toString();
             List<Component> tooltip = event.getToolTip();
 
-            // 1. TÌM VỊ TRÍ ĐỂ CHÈN
-            int insertIndex = tooltip.size(); // Mặc định ở cuối
+            int insertIndex = tooltip.size();
             boolean foundAnchor = false;
 
             boolean isBindingPart = isBindingPart(partType, partItemId);
             if (isBindingPart) {
-                // Với binding: ưu tiên vị trí dòng "No stats" (nếu có), vì đó là điểm neo chính xác nhất.
                 String bindingHeader = Component.translatable("stat.tconstruct.binding").getString().toLowerCase(Locale.ROOT);
                 String noStatsLine = Component.translatable("tool_stat.tconstruct.extra.no_stats").getString().toLowerCase(Locale.ROOT);
 
@@ -58,7 +59,6 @@ public class TooltipHandler {
                 }
 
                 if (noStatsIndex >= 0) {
-                    // Thay trực tiếp dòng "No stats" bằng chỉ số custom.
                     tooltip.remove(noStatsIndex);
                     insertIndex = noStatsIndex;
                     foundAnchor = true;
@@ -79,22 +79,17 @@ public class TooltipHandler {
             }
 
             if (!foundAnchor) {
-                // Quét từng dòng từ trên xuống dưới
                 for (int i = 0; i < tooltip.size(); i++) {
-                    // Lấy nội dung chữ của dòng đó và chuyển thành chữ thường để dễ so sánh
                     String lineText = tooltip.get(i).getString().toLowerCase(Locale.ROOT);
 
-                    // Nếu phát hiện dòng này chứa chữ Sát thương (Tiếng Anh hoặc Tiếng Việt)
                     if (lineText.contains("melee damage") || lineText.contains("attack damage") || lineText.contains("sát thương")) {
-                        insertIndex = i + 1; // Lấy đúng vị trí NGAY BÊN DƯỚI dòng đó
+                        insertIndex = i + 1;
                         foundAnchor = true;
                         break;
                     }
                 }
             }
 
-            // Nếu bộ phận đó KHÔNG CÓ dòng sát thương (ví dụ như Phụ kiện - Binding)
-            // Thì chúng ta mới quay lại cách cũ: Tìm dòng trống đầu tiên
             if (!foundAnchor) {
                 for (int i = 1; i < tooltip.size(); i++) {
                     if (tooltip.get(i).getString().trim().isEmpty()) {
@@ -104,26 +99,24 @@ public class TooltipHandler {
                 }
             }
 
-            // 2. GOM CÁC CHỈ SỐ CẦN CHÈN
             List<Component> statsToInsert = new ArrayList<>();
                 EpicFightMaterialStatReader.PartBonuses bonuses = EpicFightMaterialStatReader.read(material.getId(), partType, partItemId);
 
             if (bonuses.impact() != 0) {
                 statsToInsert.add(Component.translatable("stat.epicfighttinkercompat.impact")
-                        .append(Component.literal(": " + bonuses.impact())));
+                    .append(Component.literal((bonuses.impact()<0)?"":"+"+bonuses.impact()).withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF5555)))));
             }
             if (bonuses.maxStrikes() != 0) {
                 statsToInsert.add(Component.translatable("stat.epicfighttinkercompat.max_strikes")
-                        .append(Component.literal(": " + bonuses.maxStrikes()*100 + "%")));
+                    .append(Component.literal((bonuses.maxStrikes()<0)?"":"+" + (int)(bonuses.maxStrikes()*100) + "%").withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0x55FF55)))));
             }
             if (bonuses.armorNegation() != 0) {
                 statsToInsert.add(Component.translatable("stat.epicfighttinkercompat.armor_negation")
-                        .append(Component.literal(": " + bonuses.armorNegation()*100 + "%")));
+                    .append(Component.literal((bonuses.armorNegation()<0)?"":"+"+(int)bonuses.armorNegation() + "%")
+                        .withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0x5555FF)))));
             }
 
-            // 3. THỰC HIỆN CHÈN VÀO ĐÚNG VỊ TRÍ
             if (!statsToInsert.isEmpty()) {
-                // Lệnh này sẽ đẩy các chữ bên dưới xuống để nhường chỗ cho chỉ số của chúng ta
                 tooltip.addAll(insertIndex, statsToInsert);
             }
         }
