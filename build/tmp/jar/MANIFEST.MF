@@ -1,9 +1,0 @@
-Manifest-Version: 1.0
-Specification-Title: epicfighttinkercompat
-Specification-Vendor: minhhjjj
-Specification-Version: 1
-Implementation-Title: Epic-Fight-Tinker-Compat
-Implementation-Version: 20.0.0
-Implementation-Vendor: minhhjjj
-Implementation-Timestamp: 2026-03-15T02:48:28+0700
-

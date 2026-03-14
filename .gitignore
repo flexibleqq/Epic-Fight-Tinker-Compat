@@ -7,6 +7,8 @@ bin/
 # IDE settings
 .idea/
 *.iml
+*.ipr
+*.iws
 .settings/
 .classpath
 .project
@@ -16,6 +18,10 @@ bin/
 run/
 logs/
 crash-reports/
+
+# Caches and tags
+.tags
+.tags_sorted_by_file
 
 # OS trash
 .DS_Store
