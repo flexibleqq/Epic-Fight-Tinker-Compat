@@ -104,7 +104,7 @@ public class TooltipHandler {
 
             if (bonuses.impact() != 0) {
                 statsToInsert.add(Component.translatable("stat.epicfighttinkercompat.impact")
-                    .append(Component.literal((bonuses.impact()<0)?"":"+"+bonuses.impact()).withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF5555)))));
+                    .append(Component.literal(""+bonuses.impact()).withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF5555)))));
             }
             if (bonuses.maxStrikes() != 0) {
                 statsToInsert.add(Component.translatable("stat.epicfighttinkercompat.max_strikes")
@@ -112,7 +112,7 @@ public class TooltipHandler {
             }
             if (bonuses.armorNegation() != 0) {
                 statsToInsert.add(Component.translatable("stat.epicfighttinkercompat.armor_negation")
-                    .append(Component.literal((bonuses.armorNegation()<0)?"":"+"+(int)bonuses.armorNegation() + "%")
+                    .append(Component.literal((int)bonuses.armorNegation() + "%")
                         .withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0x5555FF)))));
             }
 
