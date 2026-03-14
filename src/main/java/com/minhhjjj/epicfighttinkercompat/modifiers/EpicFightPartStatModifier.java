@@ -86,11 +86,12 @@ public class EpicFightPartStatModifier extends Modifier implements ToolStatsModi
 
         for (int i = 0; i < materials.size(); i++) {
             if (i >= partRoles.size()) break;
+            if (!partRoles.get(i).getNamespace().equals("tconstruct")) continue;
 
             MaterialVariant material = materials.get(i);
-            MaterialStatsId role = partRoles.get(i);
+            String id = partRoles.get(i).getPath();
 
-            if (role.equals(new MaterialStatsId("tconstruct", "head"))) {
+            if (id.equals("head")) {
                 MaterialRegistry.getInstance().getMaterialStats(material.getId(), EpicFightHeadStats.ID)
                     .ifPresent(stats -> {
                         if (stats instanceof EpicFightHeadStats headStats) {
@@ -98,7 +99,7 @@ public class EpicFightPartStatModifier extends Modifier implements ToolStatsModi
                         }
                     });
             }
-            else if (role.equals(new MaterialStatsId("tconstruct", "handle"))) {
+            else if (id.equals("handle")) {
                 MaterialRegistry.getInstance().getMaterialStats(material.getId(), EpicFightHandleStats.ID)
                     .ifPresent(stats -> {
                         if (stats instanceof EpicFightHandleStats handleStats) {
@@ -106,7 +107,7 @@ public class EpicFightPartStatModifier extends Modifier implements ToolStatsModi
                         }
                     });
             }
-            else if (role.equals(new MaterialStatsId("tconstruct", "extra"))) {
+            else if (id.equals("binding")) {
                 MaterialRegistry.getInstance().getMaterialStats(material.getId(), EpicFightBindingStats.ID)
                     .ifPresent(stats -> {
                         if (stats instanceof EpicFightBindingStats bindingStats) {
