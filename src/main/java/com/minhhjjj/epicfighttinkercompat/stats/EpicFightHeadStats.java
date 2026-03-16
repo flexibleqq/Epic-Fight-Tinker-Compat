@@ -14,23 +14,17 @@ import com.minhhjjj.epicfighttinkercompat.EpicFightToolStats;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Stats tùy chỉnh cho phần Lưỡi vũ khí (Epic Fight) - Tập trung vào Impact */
 public record EpicFightHeadStats(float impact) implements IMaterialStats {
-    
-    // Đăng ký ID: "epicfighttinkercompat:head"
     public static final MaterialStatsId ID = new MaterialStatsId(EpicFightTinkerCompat.MODID, "head");
-    
-    // Bộ đọc từ file JSON: Bây giờ nó sẽ quét dòng "impact"
     public static final MaterialStatType<EpicFightHeadStats> TYPE = new MaterialStatType<>(
         ID, 
-        new EpicFightHeadStats(0f), // Mặc định là 0 nếu JSON không có
+        new EpicFightHeadStats(0f),
         RecordLoadable.create(
             FloatLoadable.ANY.defaultField("impact", 0f, true, EpicFightHeadStats::impact),
             EpicFightHeadStats::new
         )
     );
 
-    // Lấy mô tả từ file en_us.json của bạn
     private static final List<Component> DESCRIPTION = List.of(
         Component.translatable("stat.epicfighttinkercompat.impact.description")
     );
@@ -43,7 +37,6 @@ public record EpicFightHeadStats(float impact) implements IMaterialStats {
     @Override
     public List<Component> getLocalizedInfo() {
         List<Component> info = new ArrayList<>();
-        // Dùng formatValue của IMPACT để nó tự tô màu đỏ (0xFF5555) bạn đã set sẵn
         info.add(EpicFightToolStats.IMPACT.formatValue(this.impact));
         return info;
     }
@@ -55,8 +48,6 @@ public record EpicFightHeadStats(float impact) implements IMaterialStats {
 
     @Override
     public void apply(ModifierStatsBuilder builder, float scale) {
-        // Cộng thẳng điểm Impact vào vũ khí. 
-        // Phép CỘNG (.add) rất phù hợp với phần Lưỡi (Head) vì nó cấu thành chỉ số gốc.
         EpicFightToolStats.IMPACT.add(builder, this.impact * scale);
     }
 }
