@@ -8,6 +8,26 @@
     },
     "epicfighttinkercompat:binding": {
       "armor_negation": 5.0
+    },
+    "epicfighttinkercompat:plating_helmet": {
+      "weight": 10.0,
+      "stun_armor": 1.5
+    },
+    "epicfighttinkercompat:plating_chestplate": {
+      "weight": 18.0,
+      "stun_armor": 3.5
+    },
+    "epicfighttinkercompat:plating_leggings": {
+      "weight": 12.0,
+      "stun_armor": 2.5
+    },
+    "epicfighttinkercompat:plating_boots": {
+      "weight": 8.0,
+      "stun_armor": 1.0
+    },
+    "epicfighttinkercompat:maille": {
+      "weight": -0.15,
+      "stun_armor": 0.25
     }
   }
 }

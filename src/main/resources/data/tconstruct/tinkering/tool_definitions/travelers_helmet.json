@@ -27,7 +27,9 @@
     {
       "type": "tconstruct:multiply_stats",
       "multipliers": {
-        "tconstruct:durability": 0.75
+        "tconstruct:durability": 0.75,
+        "epicfighttinkercompat:weight": 0.75,
+        "epicfighttinkercompat:stun_armor": 0.75
       }
     },
     {
@@ -46,6 +48,15 @@
     {
       "type": "tconstruct:fixed_material_name",
       "index": 0
+    },
+    {
+      "type": "tconstruct:traits",
+      "traits": [
+        {
+          "name": "epicfighttinkercompat:epic_part_stats_calculator",
+          "level": 1
+        }
+      ]
     }
   ]
 }

@@ -5,10 +5,18 @@
   "tool_stat.epicfighttinkercompat.max_strikes.description": "Maximum number of enemies hit per swing.",
   "tool_stat.epicfighttinkercompat.armor_negation": "Armor Negation: ",
   "tool_stat.epicfighttinkercompat.armor_negation.description": "Percentage of enemy armor ignored.",
+  "tool_stat.epicfighttinkercompat.weight": "Weight: ",
+  "tool_stat.epicfighttinkercompat.weight.description": "Reduces the stun duration when hit, but also increases stamina consumption for skills and decreases attack speed. Items with higher attack speed will experience a more significant effect.",
+  "tool_stat.epicfighttinkercompat.stun_armor": "Stun Armor: ",
+  "tool_stat.epicfighttinkercompat.stun_armor.description": "Increases the time between stuns.",
   "stat.epicfighttinkercompat.impact": "Impact: ",
   "stat.epicfighttinkercompat.impact.description": "Epic Fight weapon's knockback force.",
   "stat.epicfighttinkercompat.max_strikes": "Max Strikes: ",
   "stat.epicfighttinkercompat.max_strikes.description": "Maximum number of enemies hit per swing.",
   "stat.epicfighttinkercompat.armor_negation": "Armor Negation: ",
-  "stat.epicfighttinkercompat.armor_negation.description": "Percentage of enemy armor ignored."
+  "stat.epicfighttinkercompat.armor_negation.description": "Percentage of enemy armor ignored.",
+  "stat.epicfighttinkercompat.weight": "Weight: ",
+  "stat.epicfighttinkercompat.weight.description": "Reduces the stun duration when hit, but also increases stamina consumption for skills and decreases attack speed. Items with higher attack speed will experience a more significant effect.",
+  "stat.epicfighttinkercompat.stun_armor": "Stun Armor: ",
+  "stat.epicfighttinkercompat.stun_armor.description": "Increases the time between stuns."
 }
