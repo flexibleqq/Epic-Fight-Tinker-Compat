@@ -18,12 +18,11 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
-/** Reads Epic Fight per-part stats directly from material stats JSON files. */
 public final class EpicFightMaterialStatReader {
   private EpicFightMaterialStatReader() {}
 
-  public record PartBonuses(float impact, float maxStrikes, float armorNegation) {
-    public static final PartBonuses ZERO = new PartBonuses(0f, 0f, 0f);
+  public record PartBonuses(float impact, float maxStrikes, float armorNegation, float weight, float stunArmor) {
+    public static final PartBonuses ZERO = new PartBonuses(0f, 0f, 0f, 0f, 0f);
   }
 
   private static final Map<String, JsonObject> MATERIAL_JSON_CACHE = new ConcurrentHashMap<>();
@@ -94,32 +93,36 @@ public final class EpicFightMaterialStatReader {
     String partTypeId = partType.toString();
     String itemId = partItemId == null ? "" : partItemId;
 
-    // Priority 1: classify by concrete part item id
     if (itemId.endsWith(":small_blade") || itemId.endsWith(":broad_blade") || itemId.endsWith(":large_plate")) {
       float impact = getFloat(statsObject, EpicFightStatDefinitions.JSON_HEAD_KEY, "impact");
-      return new PartBonuses(impact, 0f, 0f);
+      return new PartBonuses(impact, 0f, 0f, 0f, 0f);
     }
     if (itemId.endsWith(":tool_handle") || itemId.endsWith(":tough_handle")) {
       float maxStrikes = getFloat(statsObject, EpicFightStatDefinitions.JSON_HANDLE_KEY, "max_strikes");
-      return new PartBonuses(0f, maxStrikes, 0f);
+      return new PartBonuses(0f, maxStrikes, 0f, 0f, 0f);
     }
     if (itemId.endsWith(":tool_binding") || itemId.endsWith(":tough_binding") || itemId.endsWith(":bowstring") || itemId.endsWith(":fletching") || itemId.endsWith(":arrow_shaft") || itemId.endsWith(":arrow_head") || itemId.endsWith(":shield_core") || itemId.endsWith(":maille")) {
       float armorNegation = getFloat(statsObject, EpicFightStatDefinitions.JSON_BINDING_KEY, "armor_negation");
-      return new PartBonuses(0f, 0f, armorNegation);
+      return new PartBonuses(0f, 0f, armorNegation, 0f, 0f);
     }
 
-    // Priority 2: fallback by stat type id
+    if (itemId.endsWith(":helmet_plating")) {
+      float weight = getFloat(statsObject, EpicFightStatDefinitions.JSON_HELMET_KEY, "weight");
+      float stunArmor = getFloat(statsObject, EpicFightStatDefinitions.JSON_HELMET_KEY, "stun_armor");
+      return new PartBonuses(0f, 0f, 0f, weight, stunArmor);
+    }
+
     if (partTypeId.endsWith(":head")) {
       float impact = getFloat(statsObject, EpicFightStatDefinitions.JSON_HEAD_KEY, "impact");
-      return new PartBonuses(impact, 0f, 0f);
+      return new PartBonuses(impact, 0f, 0f, 0f, 0f);
     }
     if (partTypeId.endsWith(":handle") || partTypeId.endsWith(":grip")) {
       float maxStrikes = getFloat(statsObject, EpicFightStatDefinitions.JSON_HANDLE_KEY, "max_strikes");
-      return new PartBonuses(0f, maxStrikes, 0f);
+      return new PartBonuses(0f, maxStrikes, 0f, 0f, 0f);
     }
     if (partTypeId.endsWith(":binding") || partTypeId.endsWith(":extra")) {
       float armorNegation = getFloat(statsObject, EpicFightStatDefinitions.JSON_BINDING_KEY, "armor_negation");
-      return new PartBonuses(0f, 0f, armorNegation);
+      return new PartBonuses(0f, 0f, armorNegation, 0f, 0f);
     }
     return PartBonuses.ZERO;
   }
@@ -193,7 +196,6 @@ public final class EpicFightMaterialStatReader {
       return server.getResourceManager();
     }
 
-    // Client fallback without direct class linkage on dedicated server
     try {
       Class<?> minecraftClass = Class.forName("net.minecraft.client.Minecraft");
       Object minecraft = minecraftClass.getMethod("getInstance").invoke(null);
