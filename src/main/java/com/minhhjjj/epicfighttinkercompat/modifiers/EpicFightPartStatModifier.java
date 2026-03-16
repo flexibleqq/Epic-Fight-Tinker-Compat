@@ -23,11 +23,16 @@ import slimeknights.mantle.client.TooltipKey;
 
 import yesman.epicfight.world.entity.ai.attribute.EpicFightAttributes;
 
+import com.minhhjjj.epicfighttinkercompat.EpicFightTinkerCompat;
 import com.minhhjjj.epicfighttinkercompat.EpicFightToolStats;
 import com.minhhjjj.epicfighttinkercompat.stats.EpicFightHeadStats;
 import com.minhhjjj.epicfighttinkercompat.stats.EpicFightHandleStats;
 import com.minhhjjj.epicfighttinkercompat.stats.EpicFightBindingStats;
-
+import com.minhhjjj.epicfighttinkercompat.stats.armor.EpicFightHelmetStats;
+import com.minhhjjj.epicfighttinkercompat.stats.armor.EpicFightChestplateStats;
+import com.minhhjjj.epicfighttinkercompat.stats.armor.EpicFightLeggingsStats;
+import com.minhhjjj.epicfighttinkercompat.stats.armor.EpicFightBootsStats;
+import com.minhhjjj.epicfighttinkercompat.stats.armor.EpicFightMailleStats;
 import java.util.List;
 
 // Kế thừa thêm TooltipModifierHook để có quyền can thiệp vào Tooltip của vũ khí
@@ -56,25 +61,38 @@ public class EpicFightPartStatModifier extends Modifier implements ToolStatsModi
     @Override
     public void addTooltip(IToolStackView tool, ModifierEntry modifier, @Nullable Player player, List<Component> tooltip, TooltipKey tooltipKey, TooltipFlag tooltipFlag) {
         // Lấy tổng chỉ số cuối cùng của công cụ (Đã bao gồm Base Stat + Các Part cộng dồn)
-        float impact = tool.getStats().get(EpicFightToolStats.IMPACT);
-        float maxStrikes = tool.getStats().get(EpicFightToolStats.MAX_STRIKES);
-        float armorNegation = tool.getStats().get(EpicFightToolStats.ARMOR_NEGATION);
 
-        if (player != null) {
-            impact += player.getAttributeBaseValue(EpicFightAttributes.IMPACT.get());
-            armorNegation += player.getAttributeBaseValue(EpicFightAttributes.ARMOR_NEGATION.get());
-            maxStrikes += player.getAttributeBaseValue(EpicFightAttributes.MAX_STRIKES.get());
-        }
+        if (tool.getItem() instanceof net.minecraft.world.item.ArmorItem) {
+            float weight = tool.getStats().get(EpicFightToolStats.WEIGHT);
+            float stunArmor = tool.getStats().get(EpicFightToolStats.STUN_ARMOR);
 
-        // Vẽ chung vào tooltip bằng định dạng chuẩn của Tinkers (tự động nhận diện màu sắc bạn đã cài)
-        if (impact != EpicFightToolStats.IMPACT.getDefaultValue()) {
-            tooltip.add(EpicFightToolStats.IMPACT.formatValue(impact));
+            if (weight != EpicFightToolStats.WEIGHT.getDefaultValue()) {
+                tooltip.add(EpicFightToolStats.WEIGHT.formatValue(weight));
+            }
+            if (stunArmor != EpicFightToolStats.STUN_ARMOR.getDefaultValue()) {
+                tooltip.add(EpicFightToolStats.STUN_ARMOR.formatValue(stunArmor));
+            }
         }
-        if (maxStrikes != EpicFightToolStats.MAX_STRIKES.getDefaultValue()) {
-            tooltip.add(EpicFightToolStats.MAX_STRIKES.formatValue(maxStrikes));
-        }
-        if (armorNegation != EpicFightToolStats.ARMOR_NEGATION.getDefaultValue()) {
-            tooltip.add(EpicFightToolStats.ARMOR_NEGATION.formatValue(armorNegation));
+        else {
+            float impact = tool.getStats().get(EpicFightToolStats.IMPACT);
+            float maxStrikes = tool.getStats().get(EpicFightToolStats.MAX_STRIKES);
+            float armorNegation = tool.getStats().get(EpicFightToolStats.ARMOR_NEGATION);
+
+            if (player != null) {
+                impact += player.getAttributeBaseValue(EpicFightAttributes.IMPACT.get());
+                armorNegation += player.getAttributeBaseValue(EpicFightAttributes.ARMOR_NEGATION.get());
+                maxStrikes += player.getAttributeBaseValue(EpicFightAttributes.MAX_STRIKES.get());
+            }
+
+            if (impact != EpicFightToolStats.IMPACT.getDefaultValue()) {
+                tooltip.add(EpicFightToolStats.IMPACT.formatValue(impact));
+            }
+            if (maxStrikes != EpicFightToolStats.MAX_STRIKES.getDefaultValue()) {
+                tooltip.add(EpicFightToolStats.MAX_STRIKES.formatValue(maxStrikes));
+            }
+            if (armorNegation != EpicFightToolStats.ARMOR_NEGATION.getDefaultValue()) {
+                tooltip.add(EpicFightToolStats.ARMOR_NEGATION.formatValue(armorNegation));
+            }
         }
     }
 
@@ -115,6 +133,55 @@ public class EpicFightPartStatModifier extends Modifier implements ToolStatsModi
                         }
                     });
             }
+            else if (id.equals("plating_helmet")) {
+                MaterialRegistry.getInstance().getMaterialStats(material.getId(), EpicFightHelmetStats.ID)
+                    .ifPresent(stats -> {
+                        if (stats instanceof EpicFightHelmetStats helmetStats) {
+                            EpicFightToolStats.WEIGHT.add(builder, helmetStats.weight());
+                            EpicFightToolStats.STUN_ARMOR.add(builder, helmetStats.stunArmor());
+                        }
+                    });
+            }
+            else if (id.equals("plating_chestplate")) {
+                MaterialRegistry.getInstance().getMaterialStats(material.getId(), EpicFightChestplateStats.ID)
+                    .ifPresent(stats -> {
+                        if (stats instanceof EpicFightChestplateStats chestplateStats) {
+                            EpicFightToolStats.WEIGHT.add(builder, chestplateStats.weight());
+                            EpicFightToolStats.STUN_ARMOR.add(builder, chestplateStats.stunArmor());
+                        }
+                    });
+            }
+            else if (id.equals("plating_leggings")) {
+                MaterialRegistry.getInstance().getMaterialStats(material.getId(), EpicFightLeggingsStats.ID)
+                    .ifPresent(stats -> {
+                        if (stats instanceof EpicFightLeggingsStats leggingsStats) {
+                            EpicFightToolStats.WEIGHT.add(builder, leggingsStats.weight());
+                            EpicFightToolStats.STUN_ARMOR.add(builder, leggingsStats.stunArmor());
+                        }
+                    });
+            }
+            else if (id.equals("plating_boots")) {
+                MaterialRegistry.getInstance().getMaterialStats(material.getId(), EpicFightBootsStats.ID)
+                    .ifPresent(stats -> {
+                        if (stats instanceof EpicFightBootsStats bootsStats) {
+                            EpicFightToolStats.WEIGHT.add(builder, bootsStats.weight());
+                            EpicFightToolStats.STUN_ARMOR.add(builder, bootsStats.stunArmor());
+                        }
+                    });
+            }
+            else if (id.equals("maille")) {
+                MaterialRegistry.getInstance().getMaterialStats(material.getId(), EpicFightMailleStats.ID)
+                    .ifPresent(stats -> {
+                        if (stats instanceof EpicFightMailleStats mailleStats) {
+                            EpicFightToolStats.WEIGHT.percent(builder, mailleStats.weight()); 
+                            EpicFightToolStats.STUN_ARMOR.percent(builder, mailleStats.stunArmor()); 
+                        }
+                    });
+            }
+
+            // else {
+            //     EpicFightTinkerCompat.LOGGER.warn("Unknown part stats: "+id);
+            // }
         }
     }
 }
