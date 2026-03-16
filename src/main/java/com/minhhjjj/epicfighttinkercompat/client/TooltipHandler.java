@@ -16,13 +16,23 @@ import net.minecraft.ChatFormatting;
 import slimeknights.tconstruct.library.materials.definition.MaterialVariantId;
 import slimeknights.tconstruct.library.materials.stats.MaterialStatsId;
 import slimeknights.tconstruct.library.tools.part.IToolPart;
+import slimeknights.tconstruct.library.materials.MaterialRegistry;
+import slimeknights.tconstruct.library.materials.stats.IMaterialStats;
 
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Optional;
 
 import com.minhhjjj.epicfighttinkercompat.EpicFightTinkerCompat;
-import com.minhhjjj.epicfighttinkercompat.EpicFightMaterialStatReader;
+import com.minhhjjj.epicfighttinkercompat.stats.EpicFightHeadStats;
+import com.minhhjjj.epicfighttinkercompat.stats.EpicFightHandleStats;
+import com.minhhjjj.epicfighttinkercompat.stats.EpicFightBindingStats;
+import com.minhhjjj.epicfighttinkercompat.stats.armor.EpicFightHelmetStats;
+import com.minhhjjj.epicfighttinkercompat.stats.armor.EpicFightChestplateStats;
+import com.minhhjjj.epicfighttinkercompat.stats.armor.EpicFightLeggingsStats;
+import com.minhhjjj.epicfighttinkercompat.stats.armor.EpicFightBootsStats;
+import com.minhhjjj.epicfighttinkercompat.stats.armor.EpicFightMailleStats;
 
 @Mod.EventBusSubscriber(modid = EpicFightTinkerCompat.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class TooltipHandler {
@@ -44,8 +54,9 @@ public class TooltipHandler {
             int insertIndex = tooltip.size();
             boolean foundAnchor = false;
 
-            boolean isBindingPart = isBindingPart(partType, partItemId);
-            if (isBindingPart) {
+            boolean isNoStats = false;
+            // boolean isNoStats = isNoStats(partType, partItemId);
+            // if (isNoStats) {
                 String bindingHeader = Component.translatable("stat.tconstruct.binding").getString().toLowerCase(Locale.ROOT);
                 String noStatsLine = Component.translatable("tool_stat.tconstruct.extra.no_stats").getString().toLowerCase(Locale.ROOT);
 
@@ -61,28 +72,30 @@ public class TooltipHandler {
                 if (noStatsIndex >= 0) {
                     tooltip.remove(noStatsIndex);
                     insertIndex = noStatsIndex;
+                    isNoStats = true;
                     foundAnchor = true;
-                } else {
-                    int bindingHeaderIndex = -1;
-                    for (int i = 0; i < tooltip.size(); i++) {
-                        String lineText = tooltip.get(i).getString().toLowerCase(Locale.ROOT);
-                        if (!bindingHeader.equals("stat.tconstruct.binding") && lineText.contains(bindingHeader)) {
-                            bindingHeaderIndex = i;
-                            break;
-                        }
-                    }
-                    if (bindingHeaderIndex >= 0) {
-                        insertIndex = bindingHeaderIndex + 1;
-                        foundAnchor = true;
-                    }
                 }
-            }
+                // else {
+                //     int bindingHeaderIndex = -1;
+                //     for (int i = 0; i < tooltip.size(); i++) {
+                //         String lineText = tooltip.get(i).getString().toLowerCase(Locale.ROOT);
+                //         if (!bindingHeader.equals("stat.tconstruct.binding") && lineText.contains(bindingHeader)) {
+                //             bindingHeaderIndex = i;
+                //             break;
+                //         }
+                //     }
+                //     if (bindingHeaderIndex >= 0) {
+                //         insertIndex = bindingHeaderIndex + 1;
+                //         foundAnchor = true;
+                //     }
+                // }
+            // }
 
             if (!foundAnchor) {
                 for (int i = 0; i < tooltip.size(); i++) {
                     String lineText = tooltip.get(i).getString().toLowerCase(Locale.ROOT);
 
-                    if (lineText.contains("melee damage") || lineText.contains("attack damage") || lineText.contains("sát thương")) {
+                    if (lineText.contains("melee damage") || lineText.contains("attack damage") || lineText.contains("knockback resist")) {
                         insertIndex = i + 1;
                         foundAnchor = true;
                         break;
@@ -99,21 +112,90 @@ public class TooltipHandler {
                 }
             }
 
-            List<Component> statsToInsert = new ArrayList<>();
-                EpicFightMaterialStatReader.PartBonuses bonuses = EpicFightMaterialStatReader.read(material.getId(), partType, partItemId);
+            float impact = 0;
+            float maxStrikes = 0;
+            float armorNegation = 0;
+            float weight = 0;
+            float stunArmor = 0;
 
-            if (bonuses.impact() != 0) {
+            String typePath = partType.getPath();
+
+            if (typePath.equals("head")) {
+                Optional<IMaterialStats> opt = MaterialRegistry.getInstance().getMaterialStats(material.getId(), EpicFightHeadStats.ID);
+                if (opt.isPresent() && opt.get() instanceof EpicFightHeadStats hStats) {
+                    impact = hStats.impact();
+                }
+            } 
+            else if (typePath.equals("handle")) {
+                Optional<IMaterialStats> opt = MaterialRegistry.getInstance().getMaterialStats(material.getId(), EpicFightHandleStats.ID);
+                if (opt.isPresent() && opt.get() instanceof EpicFightHandleStats hStats) {
+                    maxStrikes = hStats.maxStrikes();
+                }
+            } 
+            else if (typePath.equals("binding") || typePath.equals("extra")) {
+                Optional<IMaterialStats> opt = MaterialRegistry.getInstance().getMaterialStats(material.getId(), EpicFightBindingStats.ID);
+                if (opt.isPresent() && opt.get() instanceof EpicFightBindingStats bStats) {
+                    armorNegation = bStats.armorNegation();
+                }
+            } 
+            else if (typePath.equals("plating_helmet")) {
+                Optional<IMaterialStats> opt = MaterialRegistry.getInstance().getMaterialStats(material.getId(), EpicFightHelmetStats.ID);
+                if (opt.isPresent() && opt.get() instanceof EpicFightHelmetStats hStats) {
+                    weight = hStats.weight();
+                    stunArmor = hStats.stunArmor();
+                }
+            } 
+            else if (typePath.equals("plating_chestplate")) {
+                Optional<IMaterialStats> opt = MaterialRegistry.getInstance().getMaterialStats(material.getId(), EpicFightChestplateStats.ID);
+                if (opt.isPresent() && opt.get() instanceof EpicFightChestplateStats cStats) {
+                    weight = cStats.weight();
+                    stunArmor = cStats.stunArmor();
+                }
+            } 
+            else if (typePath.equals("plating_leggings")) {
+                Optional<IMaterialStats> opt = MaterialRegistry.getInstance().getMaterialStats(material.getId(), EpicFightLeggingsStats.ID);
+                if (opt.isPresent() && opt.get() instanceof EpicFightLeggingsStats lStats) {
+                    weight = lStats.weight();
+                    stunArmor = lStats.stunArmor();
+                }
+            } 
+            else if (typePath.equals("plating_boots")) {
+                Optional<IMaterialStats> opt = MaterialRegistry.getInstance().getMaterialStats(material.getId(), EpicFightBootsStats.ID);
+                if (opt.isPresent() && opt.get() instanceof EpicFightBootsStats bStats) {
+                    weight = bStats.weight();
+                    stunArmor = bStats.stunArmor();
+                }
+            }
+            else if (typePath.equals("maille")) {
+                Optional<IMaterialStats> opt = MaterialRegistry.getInstance().getMaterialStats(material.getId(), EpicFightMailleStats.ID);
+                if (opt.isPresent() && opt.get() instanceof EpicFightMailleStats mStats) {
+                    weight = mStats.weight();
+                    stunArmor = mStats.stunArmor();
+                }
+            }
+
+            List<Component> statsToInsert = new ArrayList<>();
+
+            if (impact != 0) {
                 statsToInsert.add(Component.translatable("stat.epicfighttinkercompat.impact")
-                    .append(Component.literal(""+bonuses.impact()).withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF5555)))));
+                    .append(Component.literal("" + impact).withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0xFF5555)))));
             }
-            if (bonuses.maxStrikes() != 0) {
+            if (maxStrikes != 0) {
                 statsToInsert.add(Component.translatable("stat.epicfighttinkercompat.max_strikes")
-                    .append(Component.literal((bonuses.maxStrikes()<0)?"":"+" + (int)(bonuses.maxStrikes()*100) + "%").withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0x55FF55)))));
+                    .append(Component.literal((maxStrikes < 0 ? "" : "+") + (int)(maxStrikes * 100) + "%").withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0x55FF55)))));
             }
-            if (bonuses.armorNegation() != 0) {
+            if (armorNegation != 0) {
                 statsToInsert.add(Component.translatable("stat.epicfighttinkercompat.armor_negation")
-                    .append(Component.literal((int)bonuses.armorNegation() + "%")
-                        .withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0x5555FF)))));
+                    .append(Component.literal((int)armorNegation + "%").withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0x5555FF)))));
+            }
+
+            if (weight != 0) {
+                statsToInsert.add(Component.translatable("stat.epicfighttinkercompat.weight")
+                    .append(Component.literal(isNoStats?((weight<0?"":"+") + (int)(weight*100) + "%"):(weight%1==0?"" + (int)weight:String.format(Locale.US, "%.1f",weight))).withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0x7A40D6)))));
+            }
+            if (stunArmor != 0) {
+                statsToInsert.add(Component.translatable("stat.epicfighttinkercompat.stun_armor")
+                    .append(Component.literal(isNoStats?((weight<0?"":"+") + (int)(stunArmor*100) + "%"):(stunArmor%1==0?"" + (int)stunArmor:String.format(Locale.US, "%.1f",stunArmor))).withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0x5E40D6)))));
             }
 
             if (!statsToInsert.isEmpty()) {
@@ -122,11 +204,11 @@ public class TooltipHandler {
         }
     }
 
-    private static boolean isBindingPart(MaterialStatsId partType, String partItemId) {
-        String statTypeId = partType.toString();
-        return statTypeId.endsWith(":binding")
-                || statTypeId.endsWith(":extra")
-                || partItemId.endsWith(":tool_binding")
-                || partItemId.endsWith(":tough_binding");
-    }
+    // private static boolean isNoStats(MaterialStatsId partType, String partItemId) {
+    //     String statTypeId = partType.toString();
+    //     return statTypeId.endsWith(":binding")
+    //             || statTypeId.endsWith(":maille")
+    //             || partItemId.endsWith(":tool_binding")
+    //             || partItemId.endsWith(":tough_binding");
+    // }
 }
