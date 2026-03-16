@@ -22,11 +22,16 @@ import slimeknights.tconstruct.library.materials.MaterialRegistry;
 import com.minhhjjj.epicfighttinkercompat.stats.EpicFightBindingStats;
 import com.minhhjjj.epicfighttinkercompat.stats.EpicFightHandleStats;
 import com.minhhjjj.epicfighttinkercompat.stats.EpicFightHeadStats;
+import com.minhhjjj.epicfighttinkercompat.stats.armor.EpicFightHelmetStats;
+import com.minhhjjj.epicfighttinkercompat.stats.armor.EpicFightChestplateStats;
+import com.minhhjjj.epicfighttinkercompat.stats.armor.EpicFightLeggingsStats;
+import com.minhhjjj.epicfighttinkercompat.stats.armor.EpicFightBootsStats;
+import com.minhhjjj.epicfighttinkercompat.stats.armor.EpicFightMailleStats;
 import com.minhhjjj.epicfighttinkercompat.modifiers.EpicFightModifiers;
+import com.minhhjjj.epicfighttinkercompat.skill.AutoGuardPassiveSkill;
 
 import org.slf4j.Logger;
 
-// The value here should match an entry in the META-INF/mods.toml file
 @Mod(EpicFightTinkerCompat.MODID)
 public class EpicFightTinkerCompat
 {
@@ -53,6 +58,12 @@ public class EpicFightTinkerCompat
         MaterialRegistry.getInstance().registerStatType(EpicFightHandleStats.TYPE);
         MaterialRegistry.getInstance().registerStatType(EpicFightHeadStats.TYPE);
         MaterialRegistry.getInstance().registerStatType(EpicFightBindingStats.TYPE);
+        MaterialRegistry.getInstance().registerStatType(EpicFightHelmetStats.TYPE);
+        MaterialRegistry.getInstance().registerStatType(EpicFightChestplateStats.TYPE);
+        MaterialRegistry.getInstance().registerStatType(EpicFightLeggingsStats.TYPE);
+        MaterialRegistry.getInstance().registerStatType(EpicFightBootsStats.TYPE);
+        MaterialRegistry.getInstance().registerStatType(EpicFightMailleStats.TYPE);
+
     });
     }
 
