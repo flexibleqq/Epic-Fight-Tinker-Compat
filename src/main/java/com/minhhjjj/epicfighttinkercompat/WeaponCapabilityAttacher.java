@@ -17,8 +17,6 @@ public class WeaponCapabilityAttacher {
         if (!(stack.getItem() instanceof IModifiable)) return;
         ToolStack tool = ToolStack.from(stack);
 
-        // String weaponType = ToolStack.from(stack).getPersistentData().getString(WEAPON_TYPE);
-
         String id = ForgeRegistries.ITEMS.getKey(stack.getItem()).toString();
         String weaponType = id.substring(11);
         if (weaponType.isEmpty()) return;
