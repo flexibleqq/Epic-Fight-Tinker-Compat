@@ -1,0 +1,16 @@
+{
+  "modifier_id": "tconstruct:netherite",
+  "text": [
+    {
+      "text": "Grants +20% durability, +20% attack damage, +10% armor negation, +25% mining speed, +10% velocity, +5% knockback resistance, +20% weight, +20% stun armor, and +1 armor toughness. Increases the mining level to netherite, and makes the tool invulnerable when dropped."
+    },
+    {
+      "text": "\nTools and armor will only receive applicable stat boosts."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Maximum of 1 level",
+    "Requires 1 upgrade slot"
+  ]
+}

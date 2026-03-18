@@ -1,0 +1,40 @@
+{
+  "level_display": "tconstruct:default",
+  "modules": [
+    {
+      "type": "tconstruct:stat_boost",
+      "each_level": 0.5,
+      "operation": "add",
+      "stat": "tconstruct:attack_damage"
+    },
+    {
+      "type": "tconstruct:stat_boost",
+      "each_level": 5.0,
+      "operation": "add",
+      "stat": "epicfighttinkercompat:armor_negation",
+      "tool": {
+        "type": "mantle:tag",
+        "tag": "tconstruct:modifiable/melee/primary"
+      }
+    },
+    {
+      "type": "tconstruct:mob_effect",
+      "apply_before_melee": true,
+      "chance": {
+        "flat": 1.0
+      },
+      "effect": "tconstruct:pierce",
+      "level": {
+        "per_level": 2.0
+      },
+      "time": {
+        "flat": 100.0
+      },
+      "tool": {
+        "type": "mantle:tag",
+        "tag": "tconstruct:modifiable/ranged"
+      }
+    }
+  ],
+  "tooltip_display": "always"
+}
