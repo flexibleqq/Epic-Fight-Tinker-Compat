@@ -1,6 +1,7 @@
 package com.minhhjjj.epicfighttinkercompat;
 
 import com.minhhjjj.epicfighttinkercompat.skill.AutoGuardPassiveSkill;
+import com.minhhjjj.epicfighttinkercompat.tool.capabilities.TinkerCrossbowCapability;
 
 import com.mojang.datafixers.util.Pair;
 import yesman.epicfight.world.capabilities.item.WeaponCapability;
@@ -128,7 +129,7 @@ public class TinkerWeaponCapabilityProvider implements ICapabilityProvider {
                 builder = WeaponCapabilityPresets.BOW.apply(tool.getItem());
             }
             else if (weaponType.equals("crossbow")) {
-                builder = WeaponCapabilityPresets.CROSSBOW.apply(tool.getItem());
+                builder = TinkerCrossbowCapability.TCROSSBOW.apply(tool.getItem());
             }
             else if (weaponType.equals("pickaxe") || weaponType.equals("pickadze") || weaponType.equals("war_pick")) {
                 builder = WeaponCapabilityPresets.PICKAXE.apply(tool.getItem());
