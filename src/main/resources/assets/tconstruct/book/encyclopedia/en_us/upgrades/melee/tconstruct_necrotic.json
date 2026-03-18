@@ -2,7 +2,7 @@
   "modifier_id": "tconstruct:necrotic",
   "text": [
     {
-      "text": "Heal 5% of the damage dealt per level when using an innate skill. Tool loses 1 extra durability per level."
+      "text": "Heal 5% of the damage dealt per level when using the innate skill. Tool loses 1 extra durability per level."
     }
   ],
   "more_text_space": true,

@@ -2,7 +2,7 @@
   "modifier_id": "tconstruct:sweeping_edge",
   "text": [
     {
-      "text": "Increases the amount of damage dealt by the innate skill. Hold Shift while hovering over the weapon to see the additional damage."
+      "text": "Increases damage dealt by the innate skill by 50% at level 1, 66% at level 2, and 75% at level 3. Hold Shift while hovering over the weapon to see the additional damage."
     }
   ],
   "more_text_space": true,
