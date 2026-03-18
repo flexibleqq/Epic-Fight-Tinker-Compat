@@ -3,6 +3,7 @@ plugins {
     id 'idea'
     id 'maven-publish'
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
+    id 'org.spongepowered.mixin' version '0.7.+'
 }
 
 version = mod_version
@@ -127,9 +128,15 @@ dependencies {
     implementation fg.deobf("curse.maven:mantle-74924:7563777")
     implementation fg.deobf("curse.maven:epic-fight-mod-405076:7633232")
 
+    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
     // runtimeOnly fg.deobf("curse.maven:modernfix-790626:7515215")
     // runtimeOnly fg.deobf("curse.maven:ferritecore-429235:4810975")
     // runtimeOnly fg.deobf("curse.maven:jei-238222:7391695")
+}
+
+mixin {
+    add sourceSets.main, "epicfighttinkercompat.refmap.json"
+    config "epicfighttinkercompat.mixins.json"
 }
 
 // This block of code expands all declared replace properties in the specified resource targets.
@@ -161,7 +168,8 @@ tasks.named('jar', Jar).configure {
                 'Implementation-Title'    : project.name,
                 'Implementation-Version'  : project.jar.archiveVersion,
                 'Implementation-Vendor'   : mod_authors,
-                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+                'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
+                'MixinConfigs'            : 'epicfighttinkercompat.mixins.json'
         ])
     }
 
