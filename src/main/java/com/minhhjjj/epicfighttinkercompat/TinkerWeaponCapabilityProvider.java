@@ -2,6 +2,7 @@ package com.minhhjjj.epicfighttinkercompat;
 
 import com.minhhjjj.epicfighttinkercompat.skill.AutoGuardPassiveSkill;
 import com.minhhjjj.epicfighttinkercompat.tool.capabilities.TinkerCrossbowCapability;
+import com.minhhjjj.epicfighttinkercompat.tool.capabilities.JavelinCapability;
 
 import com.mojang.datafixers.util.Pair;
 import yesman.epicfight.world.capabilities.item.WeaponCapability;
@@ -73,38 +74,19 @@ public class TinkerWeaponCapabilityProvider implements ICapabilityProvider {
             stunArmor = tool.getStats().get(EpicFightToolStats.STUN_ARMOR);
         }
 
-        // if (tool != null && !tool.isBroken()) {
-        //     MaterialNBT materials = tool.getMaterials();
-        //     var statTypes = tool.getDefinition().getData().getHook(ToolHooks.TOOL_MATERIALS).getStatTypes(tool.getDefinition());
-        //     var parts = tool.getDefinition().getData().getHook(ToolHooks.TOOL_PARTS).getParts(tool.getDefinition());
-
-        //     int limit = Math.min(Math.min(materials.size(), statTypes.size()), parts.size());
-        //     for (int i = 0; i < limit; i++) {
-        //         slimeknights.tconstruct.library.materials.definition.MaterialVariantId matId = materials.get(i).getVariant();
-        //         MaterialStatsId partType = statTypes.get(i);
-        //         String partItemId = BuiltInRegistries.ITEM.getKey(parts.get(i).asItem()).toString();
-
-        //         EpicFightMaterialStatReader.PartBonuses bonuses = EpicFightMaterialStatReader.read(matId.getId(), partType, partItemId);
-        //         impactBonus += bonuses.impact();
-        //         strikesBonus += bonuses.maxStrikes();
-        //         armorNegationBonus += bonuses.armorNegation();
-        //     }
-        // }
-
         CapabilityItem.Builder builder = null;
         if (tool.getItem() instanceof net.minecraft.world.item.ArmorItem) {
             builder = ArmorCapability.builder()
                 .item(tool.getItem())
                 .weight(weight)
                 .stunArmor(stunArmor);
-            // EpicFightTinkerCompat.LOGGER.warn("Attaching armor capability: " + weight + "/" + stunArmor);
         }
         else {
             if (weaponType.equals("cleaver")) {
                 builder = WeaponCapabilityPresets.GREATSWORD.apply(tool.getItem());
             }
             else if (weaponType.equals("javelin")) {
-                builder = WeaponCapabilityPresets.TRIDENT.apply(tool.getItem());
+                builder = JavelinCapability.JAVELIN.apply(tool.getItem());
             }
             else if (weaponType.equals("sword") || weaponType.equals("battlesign")) {
                 builder = WeaponCapabilityPresets.SWORD.apply(tool.getItem());
