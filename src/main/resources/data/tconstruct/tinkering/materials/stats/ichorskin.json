@@ -1,7 +1,8 @@
 {
   "stats": {
-    "tconstruct:cuirass": {},
-    "tconstruct:maille": {},
-    "tconstruct:repair_kit": {}
+    "epicfighttinkercompat:maille": {
+      "weight": -0.05,
+      "stun_armor": 0.0
+    }
   }
 }

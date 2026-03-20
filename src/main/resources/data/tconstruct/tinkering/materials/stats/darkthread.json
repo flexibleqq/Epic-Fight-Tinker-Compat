@@ -1,10 +1,7 @@
 {
   "stats": {
-    "tconstruct:binding": {},
-    "tconstruct:bowstring": {},
-    "tconstruct:skull": {
-      "armor": 1,
-      "durability": 200
+    "epicfighttinkercompat:binding": {
+      "armor_negation": 0.0
     }
   }
 }

@@ -1,53 +1,33 @@
 {
   "stats": {
-    "tconstruct:binding": {},
-    "tconstruct:bowstring": {},
-    "tconstruct:grip": {
-      "accuracy": 0.25,
-      "durability": -0.3,
-      "melee_damage": 1.0
+    "epicfighttinkercompat:head": {
+      "impact": -1.0
     },
-    "tconstruct:handle": {
-      "durability": -0.3,
-      "melee_damage": 0.0,
-      "melee_speed": 0.1,
-      "mining_speed": 0.1
+    "epicfighttinkercompat:handle": {
+      "max_strikes": -0.1
     },
-    "tconstruct:head": {
-      "durability": 175,
-      "melee_attack": 1.0,
-      "mining_speed": 9.0,
-      "mining_tier": "minecraft:gold"
+    "epicfighttinkercompat:binding": {
+      "armor_negation": -10.0
     },
-    "tconstruct:limb": {
-      "accuracy": 0.15,
-      "draw_speed": 0.15,
-      "durability": 175,
-      "velocity": -0.25
+    "epicfighttinkercompat:plating_helmet": {
+      "weight": 5.0,
+      "stun_armor": 0.5
     },
-    "tconstruct:maille": {},
-    "tconstruct:plating_boots": {
-      "armor": 1.0,
-      "durability": 117
+    "epicfighttinkercompat:plating_chestplate": {
+      "weight": 17.0,
+      "stun_armor": 2.5
     },
-    "tconstruct:plating_chestplate": {
-      "armor": 5.0,
-      "durability": 144
+    "epicfighttinkercompat:plating_leggings": {
+      "weight": 14.0,
+      "stun_armor": 2.0
     },
-    "tconstruct:plating_helmet": {
-      "armor": 2.0,
-      "durability": 99
+    "epicfighttinkercompat:plating_boots": {
+      "weight": 5.0,
+      "stun_armor": 0.0
     },
-    "tconstruct:plating_leggings": {
-      "armor": 3.0,
-      "durability": 135
-    },
-    "tconstruct:plating_shield": {
-      "durability": 162
-    },
-    "tconstruct:skull": {
-      "armor": 1,
-      "durability": 175
+    "epicfighttinkercompat:maille": {
+      "weight": 0.0,
+      "stun_armor": 0.0
     }
   }
 }

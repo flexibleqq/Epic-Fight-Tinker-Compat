@@ -1,18 +1,13 @@
 {
   "stats": {
-    "tconstruct:arrow_head": {},
-    "tconstruct:binding": {},
-    "tconstruct:handle": {
-      "durability": -0.15,
-      "melee_damage": 0.1,
-      "melee_speed": 0.0,
-      "mining_speed": 0.0
+    "epicfighttinkercompat:head": {
+      "impact": 0.5
     },
-    "tconstruct:head": {
-      "durability": 85,
-      "melee_attack": 1.25,
-      "mining_speed": 3.5,
-      "mining_tier": "minecraft:stone"
+    "epicfighttinkercompat:handle": {
+      "max_strikes": -0.05
+    },
+    "epicfighttinkercompat:binding": {
+      "armor_negation": 7.5
     }
   }
 }

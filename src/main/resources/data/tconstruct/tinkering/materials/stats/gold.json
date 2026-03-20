@@ -1,28 +1,24 @@
 {
   "stats": {
-    "tconstruct:maille": {},
-    "tconstruct:plating_boots": {
-      "armor": 1.0,
-      "durability": 91
+    "epicfighttinkercompat:plating_helmet": {
+      "weight": 6.0,
+      "stun_armor": 0.5
     },
-    "tconstruct:plating_chestplate": {
-      "armor": 4.0,
-      "durability": 112
+    "epicfighttinkercompat:plating_chestplate": {
+      "weight": 18.5,
+      "stun_armor": 2.5
     },
-    "tconstruct:plating_helmet": {
-      "armor": 1.0,
-      "durability": 77
+    "epicfighttinkercompat:plating_leggings": {
+      "weight": 15.0,
+      "stun_armor": 2.0
     },
-    "tconstruct:plating_leggings": {
-      "armor": 3.0,
-      "durability": 105
+    "epicfighttinkercompat:plating_boots": {
+      "weight": 6.0,
+      "stun_armor": 0.5
     },
-    "tconstruct:plating_shield": {
-      "durability": 126
-    },
-    "tconstruct:skull": {
-      "armor": 0,
-      "durability": 125
+    "epicfighttinkercompat:maille": {
+      "weight": 0.05,
+      "stun_armor": -0.05
     }
   }
 }

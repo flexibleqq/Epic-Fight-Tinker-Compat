@@ -1,7 +1,8 @@
 {
   "stats": {
-    "tconstruct:binding": {},
-    "tconstruct:bowstring": {},
-    "tconstruct:maille": {}
+    "epicfighttinkercompat:maille": {
+      "weight": 0.0,
+      "stun_armor": 0.05
+    }
   }
 }

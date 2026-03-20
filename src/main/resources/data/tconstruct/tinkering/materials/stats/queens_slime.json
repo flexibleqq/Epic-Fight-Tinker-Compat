@@ -1,53 +1,33 @@
 {
   "stats": {
-    "tconstruct:binding": {},
-    "tconstruct:grip": {
-      "accuracy": -0.15,
-      "durability": 0.35,
-      "melee_damage": 2.0
+    "epicfighttinkercompat:head": {
+      "impact": 0.5
     },
-    "tconstruct:handle": {
-      "durability": 0.35,
-      "melee_damage": -0.05,
-      "melee_speed": -0.05,
-      "mining_speed": -0.1
+    "epicfighttinkercompat:handle": {
+      "max_strikes": 0.05
     },
-    "tconstruct:head": {
-      "durability": 1650,
-      "melee_attack": 2.0,
-      "mining_speed": 6.0,
-      "mining_tier": "minecraft:netherite"
+    "epicfighttinkercompat:binding": {
+      "armor_negation": 0.0
     },
-    "tconstruct:limb": {
-      "accuracy": 0.25,
-      "draw_speed": 0.0,
-      "durability": 1650,
-      "velocity": -0.15
+    "epicfighttinkercompat:plating_helmet": {
+      "weight": 14.0,
+      "stun_armor": 3.5
     },
-    "tconstruct:maille": {},
-    "tconstruct:plating_boots": {
-      "armor": 2.0,
-      "durability": 650,
-      "toughness": 1.0
+    "epicfighttinkercompat:plating_chestplate": {
+      "weight": 27.5,
+      "stun_armor": 6.5
     },
-    "tconstruct:plating_chestplate": {
-      "armor": 7.0,
-      "durability": 800,
-      "toughness": 1.0
+    "epicfighttinkercompat:plating_leggings": {
+      "weight": 21.5,
+      "stun_armor": 5
     },
-    "tconstruct:plating_helmet": {
-      "armor": 2.0,
-      "durability": 550,
-      "toughness": 1.0
+    "epicfighttinkercompat:plating_boots": {
+      "weight": 11.5,
+      "stun_armor": 3.0
     },
-    "tconstruct:plating_leggings": {
-      "armor": 5.0,
-      "durability": 750,
-      "toughness": 1.0
-    },
-    "tconstruct:plating_shield": {
-      "durability": 900,
-      "toughness": 1.0
+    "epicfighttinkercompat:maille": {
+      "weight": 0.0,
+      "stun_armor": 0.0
     }
   }
 }

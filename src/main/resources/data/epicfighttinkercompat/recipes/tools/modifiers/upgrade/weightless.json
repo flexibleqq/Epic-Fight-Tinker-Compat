@@ -1,0 +1,19 @@
+{
+  "type": "tconstruct:incremental_modifier",
+  "allow_crystal": true,
+  "amount_per_item": 1,
+  "input": {
+    "item": "epicfighttinkercompat:wind_essence"
+  },
+  "level": {
+    "max": 3
+  },
+  "needed_per_level": 5,
+  "result": "epicfighttinkercompat:weightless",
+  "slots": {
+    "upgrades": 1
+  },
+  "tools": {
+    "tag": "tconstruct:modifiable/armor"
+  }
+}

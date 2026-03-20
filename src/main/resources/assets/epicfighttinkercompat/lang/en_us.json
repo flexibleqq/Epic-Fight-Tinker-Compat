@@ -9,6 +9,7 @@
   "tool_stat.epicfighttinkercompat.weight.description": "Reduces the stun duration when hit, but also increases stamina consumption for skills and decreases attack speed. Items with higher attack speed will experience a more significant effect.",
   "tool_stat.epicfighttinkercompat.stun_armor": "Stun Armor: ",
   "tool_stat.epicfighttinkercompat.stun_armor.description": "Increases the time between stuns.",
+
   "stat.epicfighttinkercompat.impact": "Impact: ",
   "stat.epicfighttinkercompat.impact.description": "Epic Fight weapon's knockback force.",
   "stat.epicfighttinkercompat.max_strikes": "Max Strikes: ",
@@ -18,5 +19,18 @@
   "stat.epicfighttinkercompat.weight": "Weight: ",
   "stat.epicfighttinkercompat.weight.description": "Reduces the stun duration when hit, but also increases stamina consumption for skills and decreases attack speed. Items with higher attack speed will experience a more significant effect.",
   "stat.epicfighttinkercompat.stun_armor": "Stun Armor: ",
-  "stat.epicfighttinkercompat.stun_armor.description": "Increases the time between stuns."
+  "stat.epicfighttinkercompat.stun_armor.description": "Increases the time between stuns.",
+
+  "modifier.epicfighttinkercompat.so_sticky": "So Sticky",
+  "modifier.epicfighttinkercompat.so_sticky.flavor": "Sticks right to your hands!",
+  "modifier.epicfighttinkercompat.so_sticky.description": "Increases the maximum number of targets you can hit in a single strike",
+  "modifier.epicfighttinkercompat.weightless": "Weightless",
+  "modifier.epicfighttinkercompat.weightless.flavor": "Am I flying?",
+  "modifier.epicfighttinkercompat.weightless.description": "Reduces the weight penalty of your armor, decreasing stamina consumption in combat",
+  "modifier.epicfighttinkercompat.speary": "\u00A78Speary",
+  "modifier.epicfighttinkercompat.speary.flavor": "Is this possible??",
+  "modifier.epicfighttinkercompat.speary.description": "Makes your weapon stranger",
+
+  "item.epicfighttinkercompat.sticky_handle": "Sticky Handle",
+  "item.epicfighttinkercompat.wind_essence": "Wind Essence"
 }

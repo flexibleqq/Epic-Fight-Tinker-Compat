@@ -1,6 +1,8 @@
 {
   "stats": {
-    "tconstruct:arrow_head": {},
-    "tconstruct:maille": {}
+    "epicfighttinkercompat:maille": {
+      "weight": 0.4,
+      "stun_armor": 0.15
+    }
   }
 }

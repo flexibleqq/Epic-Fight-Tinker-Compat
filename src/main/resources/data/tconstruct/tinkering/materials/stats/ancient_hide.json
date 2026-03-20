@@ -1,9 +1,8 @@
 {
   "stats": {
-    "tconstruct:binding": {},
-    "tconstruct:bowstring": {},
-    "tconstruct:cuirass": {},
-    "tconstruct:maille": {},
-    "tconstruct:repair_kit": {}
+    "epicfighttinkercompat:maille": {
+      "weight": 0.35,
+      "stun_armor": 0.15
+    }
   }
 }
