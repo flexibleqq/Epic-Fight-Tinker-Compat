@@ -35,7 +35,6 @@ import com.minhhjjj.epicfighttinkercompat.stats.armor.EpicFightBootsStats;
 import com.minhhjjj.epicfighttinkercompat.stats.armor.EpicFightMailleStats;
 import java.util.List;
 
-// Kế thừa thêm TooltipModifierHook để có quyền can thiệp vào Tooltip của vũ khí
 public class EpicFightPartStatModifier extends Modifier implements ToolStatsModifierHook, TooltipModifierHook {
 
     @Override
@@ -43,7 +42,6 @@ public class EpicFightPartStatModifier extends Modifier implements ToolStatsModi
         return 99999; 
     }
 
-    // 1. ẨN MODIFIER: Hàm này trả về false sẽ làm Modifier tàng hình khỏi danh sách trait của vũ khí
     @Override
     public boolean shouldDisplay(boolean advanced) {
         return false;
@@ -53,14 +51,11 @@ public class EpicFightPartStatModifier extends Modifier implements ToolStatsModi
     protected void registerHooks(ModuleHookMap.Builder hookBuilder) {
         super.registerHooks(hookBuilder);
         hookBuilder.addHook(this, ModifierHooks.TOOL_STATS);
-        // Báo cho Tinkers biết Modifier này có tham gia vẽ chữ lên Tooltip
         hookBuilder.addHook(this, ModifierHooks.TOOLTIP); 
     }
 
-    // 2. VẼ STAT VÀO TOOLTIP CỦA CÔNG CỤ
     @Override
     public void addTooltip(IToolStackView tool, ModifierEntry modifier, @Nullable Player player, List<Component> tooltip, TooltipKey tooltipKey, TooltipFlag tooltipFlag) {
-        // Lấy tổng chỉ số cuối cùng của công cụ (Đã bao gồm Base Stat + Các Part cộng dồn)
 
         if (tool.getItem() instanceof net.minecraft.world.item.ArmorItem) {
             float weight = tool.getStats().get(EpicFightToolStats.WEIGHT);
@@ -96,7 +91,6 @@ public class EpicFightPartStatModifier extends Modifier implements ToolStatsModi
         }
     }
 
-    // 3. TÍNH TOÁN CHỈ SỐ (Giữ nguyên code cũ của bạn)
     @Override
     public void addToolStats(IToolContext context, ModifierEntry modifier, ModifierStatsBuilder builder) {
         List<MaterialVariant> materials = context.getMaterials().getList();
@@ -178,10 +172,6 @@ public class EpicFightPartStatModifier extends Modifier implements ToolStatsModi
                         }
                     });
             }
-
-            // else {
-            //     EpicFightTinkerCompat.LOGGER.warn("Unknown part stats: "+id);
-            // }
         }
     }
 }
