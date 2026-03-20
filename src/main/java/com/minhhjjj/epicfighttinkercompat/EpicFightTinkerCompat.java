@@ -9,6 +9,8 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.client.event.RegisterClientReloadListenersEvent;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
+import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.event.AddReloadListenerEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -17,6 +19,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraft.server.packs.resources.ResourceManagerReloadListener;
 import slimeknights.tconstruct.library.materials.MaterialRegistry;
 
 import com.minhhjjj.epicfighttinkercompat.stats.EpicFightBindingStats;
@@ -29,6 +32,8 @@ import com.minhhjjj.epicfighttinkercompat.stats.armor.EpicFightBootsStats;
 import com.minhhjjj.epicfighttinkercompat.stats.armor.EpicFightMailleStats;
 import com.minhhjjj.epicfighttinkercompat.modifiers.EpicFightModifiers;
 import com.minhhjjj.epicfighttinkercompat.skill.AutoGuardPassiveSkill;
+import com.minhhjjj.epicfighttinkercompat.tool.item.ItemRegistry;
+import com.minhhjjj.epicfighttinkercompat.client.armor.ArmorTextureBaker;
 
 import org.slf4j.Logger;
 
@@ -46,6 +51,7 @@ public class EpicFightTinkerCompat
         modEventBus.addListener(this::commonSetup);
 
         MinecraftForge.EVENT_BUS.register(this);
+        ItemRegistry.ITEMS.register(modEventBus);
 
         modEventBus.addListener(this::addCreative);
     }
@@ -69,6 +75,10 @@ public class EpicFightTinkerCompat
 
     private void addCreative(BuildCreativeModeTabContentsEvent event)
     {
+        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+            event.accept(ItemRegistry.STICKY_HANDLE.get());
+            event.accept(ItemRegistry.WIND_ESSENCE.get());
+        }
     }
 
     @SubscribeEvent
@@ -109,6 +119,12 @@ public class EpicFightTinkerCompat
         public static void onRegisterClientReloadListeners(RegisterClientReloadListenersEvent event)
         {
             event.registerReloadListener(new EpicFightCacheReloadListener());
+            if (!ModList.get().isLoaded("epictinkersarmorfix")) {
+                event.registerReloadListener((ResourceManagerReloadListener) manager -> {
+                    LOGGER.info("[EpicFight TiC Compat] Reloading resource packs, clearing baked armor cache...");
+                    ArmorTextureBaker.clearCache();
+                });
+            }
         }
     }
 }
