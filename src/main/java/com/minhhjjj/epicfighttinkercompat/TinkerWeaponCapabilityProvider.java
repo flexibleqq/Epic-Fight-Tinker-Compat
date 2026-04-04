@@ -3,6 +3,7 @@ package com.minhhjjj.epicfighttinkercompat;
 import com.minhhjjj.epicfighttinkercompat.skill.AutoGuardPassiveSkill;
 import com.minhhjjj.epicfighttinkercompat.tool.capabilities.TinkerCrossbowCapability;
 import com.minhhjjj.epicfighttinkercompat.tool.capabilities.JavelinCapability;
+import com.minhhjjj.epicfighttinkercompat.tool.capabilities.TCWeaponCapabilityPresets;
 
 import com.mojang.datafixers.util.Pair;
 import yesman.epicfight.world.capabilities.item.WeaponCapability;

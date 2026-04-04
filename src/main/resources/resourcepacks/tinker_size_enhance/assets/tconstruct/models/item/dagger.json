@@ -1,0 +1,49 @@
+{
+  "loader": "tconstruct:tool",
+  "parent": "tconstruct:item/tool/dagger/display",
+  "textures": {
+    "head":        "tconstruct:item/tool/dagger/blade",
+    "crossguard":  "tconstruct:item/tool/dagger/crossguard"
+  },
+  "modifier_roots": [ "tconstruct:item/tool/dagger/modifiers/" ],
+  "parts": [
+    { "name": "head",       "index": 0 },
+    { "name": "crossguard", "index": 1 }
+  ],
+  "overrides": [
+    {
+      "predicate": { "tconstruct:charging": 1.75 },
+      "model": "tconstruct:item/tool/dagger/throwing"
+    },
+    {
+      "predicate": { "tconstruct:charging": 2 },
+      "model": "tconstruct:item/tool/dagger/blocking"
+    },
+    {
+      "predicate": { "tconstruct:broken": 1 },
+      "model": "tconstruct:item/tool/dagger/broken"
+    }
+  ],
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [0, -90, 55],
+      "translation": [0, 4.0, 0.5],
+      "scale": [1.2, 1.2, 1]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [0, 90, -55],
+      "translation": [0, 4.0, 0.5],
+      "scale": [1.2, 1.2, 1]
+    },
+    "firstperson_righthand": {
+      "rotation": [0, -90, 25],
+      "translation": [1.13, 3.2, 1.13],
+      "scale": [1.2, 1.2, 1]
+    },
+    "firstperson_lefthand": {
+      "rotation": [0, 90, -25],
+      "translation": [1.13, 3.2, 1.13],
+      "scale": [1.2, 1.2, 1]
+    }
+  }
+}
