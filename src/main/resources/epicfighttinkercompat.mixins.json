@@ -9,7 +9,8 @@
     "doublejump.MixinDoubleJumpHandler",
     "sweepingedge.MixinEnchantmentHelper",
     "sweepingedge.MixinSweepWeaponAttack",
-    "lifesteal.MixinToolAttackContext"
+    "lifesteal.MixinToolAttackContext",
+    "shield.MixinRenderShield"
   ],
   "client": [],
   "injectors": {
