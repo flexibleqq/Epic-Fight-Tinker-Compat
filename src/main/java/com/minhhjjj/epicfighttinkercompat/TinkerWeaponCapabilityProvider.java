@@ -83,7 +83,7 @@ public class TinkerWeaponCapabilityProvider implements ICapabilityProvider {
                 .stunArmor(stunArmor);
         }
         else {
-            if (weaponType.equals("cleaver")) {
+            if (weaponType.equals("cleaver") || weaponType.equals("vein_hammer")) {
                 builder = WeaponCapabilityPresets.GREATSWORD.apply(tool.getItem());
             }
             else if (weaponType.equals("javelin")) {
@@ -92,9 +92,8 @@ public class TinkerWeaponCapabilityProvider implements ICapabilityProvider {
             else if (weaponType.equals("sword") || weaponType.equals("battlesign")) {
                 builder = WeaponCapabilityPresets.SWORD.apply(tool.getItem());
             }
-            else if (weaponType.equals("sledge_hammer") || weaponType.equals("vein_hammer")) {
-                WeaponCapability.Builder weaponBuilder = (WeaponCapability.Builder)WeaponCapabilityPresets.GREATSWORD.apply(tool.getItem());
-                builder = weaponBuilder.passiveSkill(AutoGuardPassiveSkill.AUTO_GUARD_PASSIVE);
+            else if (weaponType.equals("sledge_hammer")) {
+                builder = TCWeaponCapabilityPresets.TC_SLEDGE_HAMMER.apply(tool.getItem());
             }
             else if (weaponType.equals("axe") || weaponType.equals("broad_axe")) {
                 builder = WeaponCapabilityPresets.AXE.apply(tool.getItem());

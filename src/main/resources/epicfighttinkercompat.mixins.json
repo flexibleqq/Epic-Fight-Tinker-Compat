@@ -10,7 +10,10 @@
     "sweepingedge.MixinEnchantmentHelper",
     "sweepingedge.MixinSweepWeaponAttack",
     "lifesteal.MixinToolAttackContext",
-    "shield.MixinRenderShield"
+    "tool.MixinItemSkinsReloadListener",
+    "tool.MixinAnimationTrailParticle",
+    "tool.MixinTrailProvider",
+    "tool.MixinRenderShield"
   ],
   "client": [],
   "injectors": {
