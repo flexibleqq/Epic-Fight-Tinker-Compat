@@ -1,0 +1,15 @@
+{
+  "modifier_id": "epicfighttinkercompat:weightless",
+  "text": [
+    {
+      "text": "Reduces armor weight by 2.5 per level, lowering stamina penalties in Epic Fight combat."
+    }
+  ],
+  "more_text_space": true,
+  "tool_filter": "tconstruct:modifiable/armor",
+  "effects": [
+    "Can apply levels incrementally",
+    "Maximum of 3 levels",
+    "Requires 1 upgrade slot per level"
+  ]
+}

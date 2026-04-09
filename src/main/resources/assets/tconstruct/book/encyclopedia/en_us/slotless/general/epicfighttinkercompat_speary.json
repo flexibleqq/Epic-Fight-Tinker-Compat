@@ -1,0 +1,14 @@
+{
+  "modifier_id": "epicfighttinkercompat:speary",
+  "text": [
+    {
+      "text": "Changes javelin behavior to use spear-style handling in Epic Fight."
+    }
+  ],
+  "more_text_space": true,
+  "effects": [
+    "Maximum of 1 level",
+    "Applies only to javelins",
+    "Does not require a modifier slot"
+  ]
+}
