@@ -10,7 +10,6 @@ import slimeknights.tconstruct.library.tools.stat.IToolStat;
 import slimeknights.tconstruct.library.tools.stat.ModifierStatsBuilder;
 
 import com.minhhjjj.epicfighttinkercompat.EpicFightTinkerCompat;
-import com.minhhjjj.epicfighttinkercompat.EpicFightToolStats;
 
 import java.util.ArrayList;
 import java.util.List;

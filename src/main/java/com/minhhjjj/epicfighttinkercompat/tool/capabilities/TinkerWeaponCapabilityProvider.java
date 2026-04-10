@@ -1,10 +1,8 @@
-package com.minhhjjj.epicfighttinkercompat;
+package com.minhhjjj.epicfighttinkercompat.tool.capabilities;
 
+import com.minhhjjj.epicfighttinkercompat.EpicFightTinkerCompat;
 import com.minhhjjj.epicfighttinkercompat.skill.AutoGuardPassiveSkill;
-import com.minhhjjj.epicfighttinkercompat.tool.capabilities.TinkerCrossbowCapability;
-import com.minhhjjj.epicfighttinkercompat.tool.capabilities.JavelinCapability;
-import com.minhhjjj.epicfighttinkercompat.tool.capabilities.TCWeaponCapabilityPresets;
-
+import com.minhhjjj.epicfighttinkercompat.stats.EpicFightToolStats;
 import com.mojang.datafixers.util.Pair;
 import yesman.epicfight.world.capabilities.item.WeaponCapability;
 import yesman.epicfight.world.capabilities.item.ArmorCapability;

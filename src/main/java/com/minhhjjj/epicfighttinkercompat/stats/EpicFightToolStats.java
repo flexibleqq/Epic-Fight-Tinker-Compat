@@ -1,7 +1,10 @@
-package com.minhhjjj.epicfighttinkercompat;
+package com.minhhjjj.epicfighttinkercompat.stats;
 
 import slimeknights.tconstruct.library.tools.stat.FloatToolStat;
 import slimeknights.tconstruct.library.tools.stat.ToolStatId;
+
+import com.minhhjjj.epicfighttinkercompat.EpicFightTinkerCompat;
+
 import slimeknights.tconstruct.common.TinkerTags;
 import slimeknights.tconstruct.library.tools.stat.ToolStats;
 

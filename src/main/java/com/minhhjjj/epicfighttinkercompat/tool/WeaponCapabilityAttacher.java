@@ -1,4 +1,7 @@
-package com.minhhjjj.epicfighttinkercompat;
+package com.minhhjjj.epicfighttinkercompat.tool;
+
+import com.minhhjjj.epicfighttinkercompat.EpicFightTinkerCompat;
+import com.minhhjjj.epicfighttinkercompat.tool.capabilities.TinkerWeaponCapabilityProvider;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.event.AttachCapabilitiesEvent;

@@ -24,8 +24,8 @@ import slimeknights.mantle.client.TooltipKey;
 import yesman.epicfight.world.entity.ai.attribute.EpicFightAttributes;
 
 import com.minhhjjj.epicfighttinkercompat.EpicFightTinkerCompat;
-import com.minhhjjj.epicfighttinkercompat.EpicFightToolStats;
 import com.minhhjjj.epicfighttinkercompat.stats.EpicFightHeadStats;
+import com.minhhjjj.epicfighttinkercompat.stats.EpicFightToolStats;
 import com.minhhjjj.epicfighttinkercompat.stats.EpicFightHandleStats;
 import com.minhhjjj.epicfighttinkercompat.stats.EpicFightBindingStats;
 import com.minhhjjj.epicfighttinkercompat.stats.armor.EpicFightHelmetStats;

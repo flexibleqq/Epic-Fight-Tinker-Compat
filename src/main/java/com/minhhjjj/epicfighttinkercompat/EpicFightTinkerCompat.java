@@ -1,7 +1,6 @@
 package com.minhhjjj.epicfighttinkercompat;
 
 import com.mojang.logging.LogUtils;
-import net.minecraft.client.Minecraft;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimplePreparableReloadListener;
 import net.minecraft.util.profiling.ProfilerFiller;
@@ -25,13 +24,13 @@ import slimeknights.tconstruct.library.materials.MaterialRegistry;
 import com.minhhjjj.epicfighttinkercompat.stats.EpicFightBindingStats;
 import com.minhhjjj.epicfighttinkercompat.stats.EpicFightHandleStats;
 import com.minhhjjj.epicfighttinkercompat.stats.EpicFightHeadStats;
+import com.minhhjjj.epicfighttinkercompat.stats.EpicFightToolStats;
 import com.minhhjjj.epicfighttinkercompat.stats.armor.EpicFightHelmetStats;
 import com.minhhjjj.epicfighttinkercompat.stats.armor.EpicFightChestplateStats;
 import com.minhhjjj.epicfighttinkercompat.stats.armor.EpicFightLeggingsStats;
 import com.minhhjjj.epicfighttinkercompat.stats.armor.EpicFightBootsStats;
 import com.minhhjjj.epicfighttinkercompat.stats.armor.EpicFightMailleStats;
 import com.minhhjjj.epicfighttinkercompat.modifiers.EpicFightModifiers;
-import com.minhhjjj.epicfighttinkercompat.skill.AutoGuardPassiveSkill;
 import com.minhhjjj.epicfighttinkercompat.tool.item.ItemRegistry;
 import com.minhhjjj.epicfighttinkercompat.client.armor.ArmorTextureBaker;
 
@@ -84,7 +83,6 @@ public class EpicFightTinkerCompat
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event)
     {
-        EpicFightMaterialStatReader.preload(event.getServer().getResourceManager());
     }
 
     @SubscribeEvent
@@ -101,7 +99,6 @@ public class EpicFightTinkerCompat
 
         @Override
         protected void apply(Void unused, ResourceManager resourceManager, ProfilerFiller profiler) {
-            EpicFightMaterialStatReader.preload(resourceManager);
             LOGGER.info("Reloaded Epic Fight material stat cache");
         }
     }
@@ -112,7 +109,6 @@ public class EpicFightTinkerCompat
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
-            event.enqueueWork(() -> EpicFightMaterialStatReader.preload(Minecraft.getInstance().getResourceManager()));
         }
 
         @SubscribeEvent

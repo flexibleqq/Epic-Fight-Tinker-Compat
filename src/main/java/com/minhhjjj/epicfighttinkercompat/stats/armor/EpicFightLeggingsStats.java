@@ -9,7 +9,7 @@ import slimeknights.tconstruct.library.materials.stats.MaterialStatsId;
 import slimeknights.tconstruct.library.tools.stat.ModifierStatsBuilder;
 
 import com.minhhjjj.epicfighttinkercompat.EpicFightTinkerCompat;
-import com.minhhjjj.epicfighttinkercompat.EpicFightToolStats;
+import com.minhhjjj.epicfighttinkercompat.stats.EpicFightToolStats;
 
 import java.util.ArrayList;
 import java.util.List;
