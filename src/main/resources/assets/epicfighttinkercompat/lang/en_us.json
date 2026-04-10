@@ -27,9 +27,13 @@
   "modifier.epicfighttinkercompat.weightless": "Weightless",
   "modifier.epicfighttinkercompat.weightless.flavor": "Am I flying?",
   "modifier.epicfighttinkercompat.weightless.description": "Reduces the weight penalty of your armor, decreasing stamina consumption in combat",
-  "modifier.epicfighttinkercompat.speary": "\u00A78Speary",
+  "modifier.epicfighttinkercompat.speary": "Speary",
   "modifier.epicfighttinkercompat.speary.flavor": "Is this possible??",
   "modifier.epicfighttinkercompat.speary.description": "Makes your weapon stranger",
+
+  "upgrades.melee.epicfighttinkercompat.so_sticky": "So Sticky",
+  "upgrades.armor.epicfighttinkercompat.weightless": "Weightless",
+  "slotless.general.epicfighttinkercompat.speary": "Speary",
 
   "item.epicfighttinkercompat.sticky_handle": "Sticky Handle",
   "item.epicfighttinkercompat.wind_essence": "Wind Essence"
