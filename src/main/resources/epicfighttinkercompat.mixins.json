@@ -11,11 +11,11 @@
     "tool.MixinItemSkinsReloadListener",
     "tool.MixinAnimationTrailParticle",
     "tool.MixinTrailProvider",
-    "tool.MixinRenderShield"
+    "tool.MixinRenderShield",
+    "doublejump.MixinDoubleJumpHandler"
   ],
   "client": [
-    "doublejump.MixinPhantomAscentSkill",
-    "doublejump.MixinDoubleJumpHandler"
+    "doublejump.MixinPhantomAscentSkill"
   ],
   "injectors": {
     "defaultRequire": 1
