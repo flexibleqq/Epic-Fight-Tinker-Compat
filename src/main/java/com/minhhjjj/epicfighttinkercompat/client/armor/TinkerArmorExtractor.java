@@ -22,6 +22,9 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 public class TinkerArmorExtractor {
+    public static boolean supportsTinkerArmorRendering(ItemStack stack) {
+        return getModelIdFromStack(stack) != null;
+    }
 
     public static List<ArmorLayerInfo> getLayerPaths(ItemStack stack, EquipmentSlot slot, RegistryAccess registryAccess) {
         List<ArmorLayerInfo> layerInfos = new ArrayList<>();

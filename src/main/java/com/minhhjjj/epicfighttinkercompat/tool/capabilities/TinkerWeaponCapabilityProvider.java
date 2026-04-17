@@ -3,6 +3,7 @@ package com.minhhjjj.epicfighttinkercompat.tool.capabilities;
 import com.minhhjjj.epicfighttinkercompat.EpicFightTinkerCompat;
 import com.minhhjjj.epicfighttinkercompat.skill.AutoGuardPassiveSkill;
 import com.minhhjjj.epicfighttinkercompat.stats.EpicFightToolStats;
+import com.minhhjjj.epicfighttinkercompat.tool.EpicFightArmorStatsHelper;
 import com.mojang.datafixers.util.Pair;
 import yesman.epicfight.world.capabilities.item.WeaponCapability;
 import yesman.epicfight.world.capabilities.item.ArmorCapability;
@@ -69,8 +70,9 @@ public class TinkerWeaponCapabilityProvider implements ICapabilityProvider {
             impactBonus = tool.getStats().get(EpicFightToolStats.IMPACT);
             strikesBonus = tool.getStats().get(EpicFightToolStats.MAX_STRIKES);
             armorNegationBonus = tool.getStats().get(EpicFightToolStats.ARMOR_NEGATION);
-            weight = tool.getStats().get(EpicFightToolStats.WEIGHT);
-            stunArmor = tool.getStats().get(EpicFightToolStats.STUN_ARMOR);
+            EpicFightArmorStatsHelper.ArmorStats armorStats = EpicFightArmorStatsHelper.resolveArmorStats(tool);
+            weight = armorStats.weight();
+            stunArmor = armorStats.stunArmor();
         }
 
         CapabilityItem.Builder builder = null;

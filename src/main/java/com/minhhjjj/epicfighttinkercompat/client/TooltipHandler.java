@@ -18,6 +18,7 @@ import slimeknights.tconstruct.library.materials.stats.MaterialStatsId;
 import slimeknights.tconstruct.library.tools.part.IToolPart;
 import slimeknights.tconstruct.library.materials.MaterialRegistry;
 import slimeknights.tconstruct.library.materials.stats.IMaterialStats;
+import slimeknights.tconstruct.library.tools.nbt.ToolStack;
 
 import java.util.List;
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ import com.minhhjjj.epicfighttinkercompat.stats.armor.EpicFightChestplateStats;
 import com.minhhjjj.epicfighttinkercompat.stats.armor.EpicFightLeggingsStats;
 import com.minhhjjj.epicfighttinkercompat.stats.armor.EpicFightBootsStats;
 import com.minhhjjj.epicfighttinkercompat.stats.armor.EpicFightMailleStats;
+import com.minhhjjj.epicfighttinkercompat.tool.EpicFightArmorStatsHelper;
 
 @Mod.EventBusSubscriber(modid = EpicFightTinkerCompat.MODID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class TooltipHandler {
@@ -47,6 +49,20 @@ public class TooltipHandler {
     public static void onTooltipRender(ItemTooltipEvent event) {
         ItemStack stack = event.getItemStack();
         Item item = stack.getItem();
+
+        if (EpicFightArmorStatsHelper.isModifiableArmor(item)) {
+            ToolStack tool = ToolStack.from(stack);
+            if (!EpicFightArmorStatsHelper.hasEpicFightPartStats(tool)) {
+                EpicFightArmorStatsHelper.ArmorStats armorStats = EpicFightArmorStatsHelper.resolveArmorStats(tool);
+                if (armorStats.weight() != 0.0D || armorStats.stunArmor() != 0.0D) {
+                    List<Component> tooltip = event.getToolTip();
+                    tooltip.add(Component.translatable("stat.epicfighttinkercompat.weight")
+                        .append(Component.literal(formatValue(armorStats.weight())).withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0x7A40D6)))));
+                    tooltip.add(Component.translatable("stat.epicfighttinkercompat.stun_armor")
+                        .append(Component.literal(formatValue(armorStats.stunArmor())).withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0x5E40D6)))));
+                }
+            }
+        }
 
         if (item instanceof IToolPart part) {
             boolean isShiftPressed = Screen.hasShiftDown();
@@ -221,6 +237,10 @@ public class TooltipHandler {
                 tooltip.addAll(insertIndex, statsToInsert);
             }
         }
+    }
+
+    private static String formatValue(double value) {
+        return value % 1 == 0 ? Integer.toString((int) value) : String.format(Locale.US, "%.1f", value);
     }
 
     // private static boolean isNoStats(MaterialStatsId partType, String partItemId) {
