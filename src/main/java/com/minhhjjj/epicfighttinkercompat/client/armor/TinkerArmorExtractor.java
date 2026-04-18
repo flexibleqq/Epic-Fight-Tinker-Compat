@@ -2,6 +2,7 @@ package com.minhhjjj.epicfighttinkercompat.client.armor;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EquipmentSlot;
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.core.RegistryAccess;
@@ -23,7 +24,7 @@ import javax.annotation.Nullable;
 
 public class TinkerArmorExtractor {
     public static boolean supportsTinkerArmorRendering(ItemStack stack) {
-        return getModelIdFromStack(stack) != null;
+        return stack.getItem() instanceof ArmorItem && getModelIdFromStack(stack) != null;
     }
 
     public static List<ArmorLayerInfo> getLayerPaths(ItemStack stack, EquipmentSlot slot, RegistryAccess registryAccess) {

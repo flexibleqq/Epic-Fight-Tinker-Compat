@@ -30,7 +30,6 @@ public final class EpicFightArmorStatsHelper {
     private static final MaterialStatsId TCON_CHESTPLATE = new MaterialStatsId("tconstruct", "plating_chestplate");
     private static final MaterialStatsId TCON_LEGGINGS = new MaterialStatsId("tconstruct", "plating_leggings");
     private static final MaterialStatsId TCON_BOOTS = new MaterialStatsId("tconstruct", "plating_boots");
-    private static final MaterialStatsId TCON_MAILLE = new MaterialStatsId("tconstruct", "maille");
 
     private EpicFightArmorStatsHelper() {}
 
@@ -94,10 +93,12 @@ public final class EpicFightArmorStatsHelper {
                 }
                 case "maille" -> {
                     ArmorStats mailleStats = getMailleStats(material);
-                    float mailleWeight = (float) mailleStats.weight();
-                    float mailleStunArmor = (float) mailleStats.stunArmor();
-                    weight *= (1.0D + mailleWeight);
-                    stunArmor *= (1.0D + mailleStunArmor);
+                    if (mailleStats.weight() != 0.0D || mailleStats.stunArmor() != 0.0D) {
+                        float mailleWeight = (float) mailleStats.weight();
+                        float mailleStunArmor = (float) mailleStats.stunArmor();
+                        weight *= (1.0D + mailleWeight);
+                        stunArmor *= (1.0D + mailleStunArmor);
+                    }
                 }
                 default -> {
                 }
@@ -144,20 +145,8 @@ public final class EpicFightArmorStatsHelper {
             IMaterialStats stats = customStats.get();
             return new ArmorStats(readFloat(stats, "weight"), readFloat(stats, "stunArmor"));
         }
-
-        Optional<IMaterialStats> nativeStats = MaterialRegistry.getInstance().getMaterialStats(material.getId(), TCON_MAILLE);
-        if (nativeStats.isEmpty()) {
-            return new ArmorStats(0.0D, 0.0D);
-        }
-
-        IMaterialStats stats = nativeStats.get();
-        double armor = readFloat(stats, "armor");
-        double toughness = readFloat(stats, "toughness");
-        double knockbackResistance = readFloat(stats, "knockbackResistance");
-
-        double weight = (toughness * 0.05D) + (knockbackResistance * 0.5D) - (armor * 0.01D);
-        double stunArmor = (toughness * 0.05D) + (knockbackResistance * 0.5D);
-        return new ArmorStats(round(weight), round(stunArmor));
+        
+        return new ArmorStats(0.0D, 0.0D);
     }
 
     private static float readFloat(IMaterialStats stats, String methodName) {
@@ -166,7 +155,13 @@ public final class EpicFightArmorStatsHelper {
             if (value instanceof Number number) {
                 return number.floatValue();
             }
-        } catch (ReflectiveOperationException ignored) {
+        } catch (ReflectiveOperationException e) {
+            EpicFightTinkerCompat.LOGGER.warn(
+                "Failed to read material stat method '{}' from {} while resolving Epic Fight armor compat",
+                methodName,
+                stats.getClass().getName(),
+                e
+            );
         }
         return 0.0F;
     }
